@@ -1,0 +1,20 @@
+def isBalanced(s: str) -> bool:
+    stack = []
+    bracket_map = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in bracket_map.values():  # buka kurung
+            stack.append(char)
+        elif char in bracket_map:         # tutup kurung
+            if not stack or stack[-1] != bracket_map[char]:
+                return False
+            stack.pop()
+
+    return not stack
+
+# Ambil input dari user
+user_input = input("Masukkan string tanda kurung (misal: '([]{})': ")
+if isBalanced(user_input):
+    print("Tanda kurung seimbang (Balanced).")
+else:
+    print("Tanda kurung tidak seimbang (Not Balanced).")
